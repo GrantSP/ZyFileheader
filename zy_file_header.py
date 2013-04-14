@@ -32,7 +32,7 @@ class ZyFileNewHeaderCommand(sublime_plugin.TextCommand):
         """ for a new file """
         if not self.view.file_name():
             file_header_format = zy_config.get('file_header_format')
-        else: """ for existed files"""
+        else:   # for existed files
             file_name = self.view.file_name()
             prefix, extensions = os.path.splitext(file_name)
             file_header_format = zy_config.get('file_header_format' + extensions)
