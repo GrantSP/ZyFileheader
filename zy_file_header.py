@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 #*********************************************************#
-# @@ScriptName: zy_file_header.py
+# @@ScriptName: zy_file_header_bak.py
 # @@Author: zhenyu<fjctlzy@gmail.com>
 # @@Create Date: 2012-11-26 20:27:03
-# @@Modify Date: 2012-12-04 14:30:58
-# @@Function:
+# @@Modify Date: 2013-09-06 07:49:03
+# @@Function: It help to add file header automatically.
 #*********************************************************#
 import sublime_plugin
 import os
@@ -29,10 +29,9 @@ class ZyFileNewHeaderCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
         zy_config = ZyConfig.get_singleton()
-        """ for a new file """
         if not self.view.file_name():
             file_header_format = zy_config.get('file_header_format')
-        else: """ for existed files"""
+        else:
             file_name = self.view.file_name()
             prefix, extensions = os.path.splitext(file_name)
             file_header_format = zy_config.get('file_header_format' + extensions)
@@ -72,6 +71,10 @@ class ZyAddCmdHeaderCommand(sublime_plugin.TextCommand):
             cmd_header = zy_config.get('python')
         elif file_name.endswith('.sh'):
             cmd_header = zy_config.get('shell')
+
+        """get config by file extensions"""
+        prefix, extensions = os.path.splitext(file_name)
+        cmd_header = zy_config.get(extensions)
 
         cmd_headers = cmd_header.split('\n')
         exists = False

@@ -1,6 +1,6 @@
 # Description
 
-ZyFileheader is a plugin of Sublime Text2 which helps to add file header like 
+ZyFileheader is a plugin of Sublime Text2 which helps to add file header like
 
       {
          #!/usr/bin/env python
@@ -33,15 +33,15 @@ to your new created file, and you could define the header for yourself. Currentl
 
 # Usage
 
-You could put settings below in your Perferences.sublime-settings by click "Perferences"=>"Settings - User": 
+You could put settings below in your Perferences.sublime-settings by click "Perferences"=>"Settings - User":
 
     "zy_file_header" : {
         "add_on_created": true,
         "file_header_format": "#*********************************************************#\n# @@ScriptName: \n# @@Author: @@author<@@email>\n# @@Create Date:\n# @@Modify Date: \n# @@Function:\n#*********************************************************#",
         "file_header_format.php": "/*********************************************************#\n# @@ScriptName: \n# @@Author: @@author<@@email>\n# @@Create Date:\n# @@Modify Date: \n# @@Function:\n#*********************************************************/",
         "file_header_format.c": "/*********************************************************#\n# @@ScriptName: \n# @@Author: @@author<@@email>\n# @@Create Date:\n# @@Modify Date: \n# @@Function:\n#*********************************************************/",
-        "python": "#!/usr/bin/env python\n# -*- coding:utf-8 -*-",
-        "shell": "#!/usr/bin/env bash",
+        ".py": "#!/usr/bin/env python\n# -*- coding:utf-8 -*-",
+        ".sh": "#!/usr/bin/env bash",
         "author": "your name here",
         "email": "your email here",
         "time_format": "%Y-%m-%d %H:%M:%S",
@@ -61,6 +61,7 @@ You could put settings below in your Perferences.sublime-settings by click "Perf
 * Custom time format, using Python datetime format, please refer to https://github.com/fjctlzy/ZyFileheader/blob/master/time_format.md
 * CTRL + 1 will use file ctime as @@Create Date for existed file
 * You could set add_on_created to false so that when file is created, the header won't be added automatically(set this to be false if you want to use multiple header formats functions now)
+* You could set interpreter for different language, by file extensions, such as .sh .py .java .php
 * Multiple header formats such as(but add_on_created should be set to false now):
 
         "zy_file_header"{
@@ -68,4 +69,3 @@ You could put settings below in your Perferences.sublime-settings by click "Perf
             "file_header_format.php": "/**/"
             "file_header_format.py": "#######"
         }
-    
