@@ -11,8 +11,30 @@ import sublime_plugin
 import os
 import datetime
 import re
+import sublime
+#from zy_config import ZyConfig
 
-from zy_config import ZyConfig
+
+class ZyConfig:
+
+    config = None
+
+    @classmethod
+    def get_singleton(self):
+        self.load_settings()
+
+        return self.config
+
+    @classmethod
+    def load_settings(self):
+        s = sublime.load_settings('Preferences.sublime-settings')
+        self.config = s.get('zy_file_header')
+        if not self.config:
+            raise Exception("zy_file_header is not configured.")
+
+        """set default time_format"""
+        if not self.config.get('time_format'):
+            self.config['time_format'] = '%Y-%m-%d %H:%M:%S'
 
 
 class ZyAddHeaderOnCreatedCommand(sublime_plugin.TextCommand):
