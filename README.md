@@ -1,6 +1,10 @@
+# Attention
+
+Now, Sublime Text3 is supported
+
 # Description
 
-ZyFileheader is a plugin of Sublime Text2 which helps to add file header like
+ZyFileheader is a plugin of Sublime Text2&3 which helps to add file header like
 
       {
          #!/usr/bin/env python
