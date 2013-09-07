@@ -4,7 +4,7 @@ Now, Sublime Text3 is supported
 
 # Description
 
-ZyFileheader is a plugin of Sublime Text2&3 which helps to add file header like
+ZyFileheader is a plugin for Sublime Text2&3 which adds a file header like
 
       {
          #!/usr/bin/env python
@@ -18,7 +18,7 @@ ZyFileheader is a plugin of Sublime Text2&3 which helps to add file header like
          #*********************************************************#
       }
 
-to your new created file, and you could define the header for yourself. Currently the plugin support python and shell, which is my mostly used.
+to your new created file, and you could define the header for yourself. Currently the plugin supports python and shell, which are my most used.
 
 # Installation
 
@@ -37,7 +37,7 @@ to your new created file, and you could define the header for yourself. Currentl
 
 # Usage
 
-You could put settings below in your Perferences.sublime-settings by click "Perferences"=>"Settings - User":
+You could put settings below in your Preferences.sublime-settings by click "Preferences"=>"Settings - User":
 
     "zy_file_header" : {
         "add_on_created": true,
@@ -62,7 +62,7 @@ You could put settings below in your Perferences.sublime-settings by click "Perf
 * Modify Date will change each time you save(CTRL+S) the file
 * ScriptName will change each time you save as(CTRL+SHIFT+S) the file
 * CTRL + 1 could add defined header to your current file which has no header
-* Custom time format, using Python datetime format, please refer to https://github.com/fjctlzy/ZyFileheader/blob/master/time_format.md
+* Custom time format, using Python datetime format, please refer to [time_format.md](https://github.com/fjctlzy/ZyFileheader/blob/master/time_format.md)
 * CTRL + 1 will use file ctime as @@Create Date for existed file
 * You could set add_on_created to false so that when file is created, the header won't be added automatically(set this to be false if you want to use multiple header formats functions now)
 * You could set interpreter for different language, by file extensions, such as .sh .py .java .php
