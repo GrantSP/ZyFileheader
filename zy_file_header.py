@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-#*********************************************************#
+# *********************************************************#
 # @@ScriptName: zy_file_header_bak.py
 # @@Author: zhenyu<fjctlzy@gmail.com>
 # @@Create Date: 2012-11-26 20:27:03
 # @@Modify Date: 2013-09-06 07:49:03
 # @@Function: It help to add file header automatically.
-#*********************************************************#
+# *********************************************************#
 import sublime_plugin
 import os
 import datetime
@@ -34,7 +34,8 @@ class ZyFileNewHeaderCommand(sublime_plugin.TextCommand):
         else:   # for existed files
             file_name = self.view.file_name()
             prefix, extensions = os.path.splitext(file_name)
-            file_header_format = zy_config.get('file_header_format' + extensions)
+            file_header_format = zy_config.get(
+                'file_header_format' + extensions)
             if not file_header_format:
                 file_header_format = zy_config.get('file_header_format')
 
@@ -49,18 +50,22 @@ class ZyFileNewHeaderCommand(sublime_plugin.TextCommand):
             using os.stat, otherwise using current time instead
         """
         if not self.view.file_name():
-            create_time = datetime.datetime.now().strftime(zy_config.get('time_format'))
+            create_time = datetime.datetime.now().strftime(
+                zy_config.get('time_format'))
         else:
             file_stat = os.stat(self.view.file_name())
             st_ctime = file_stat[9]
-            create_time = datetime.datetime.fromtimestamp(st_ctime).strftime(zy_config.get('time_format'))
+            create_time = datetime.datetime.fromtimestamp(
+                st_ctime).strftime(zy_config.get('time_format'))
         if file_header_format.find('@@Create Date') >= 0:
-            file_header_format = file_header_format.replace('@@Create Date:', '@@Create Date: ' + create_time)
+            file_header_format = file_header_format.replace(
+                '@@Create Date:', '@@Create Date: ' + create_time)
 
         self.view.insert(edit, 0, file_header_format)
 
 
 class ZyAddCmdHeaderCommand(sublime_plugin.TextCommand):
+
     def run(self, edit):
         zy_config = ZyConfig.get_singleton()
         if zy_config.get('add_on_created') == False:
@@ -78,7 +83,7 @@ class ZyAddCmdHeaderCommand(sublime_plugin.TextCommand):
 
         cmd_headers = cmd_header.split('\n')
         exists = False
-        for line_no in xrange(0, 5):
+        for line_no in range(0, 5):
             line = self.view.substr(self.view.line(line_no))
             for cmd_line in cmd_headers:
                 if line.find(cmd_line) >= 0:
@@ -90,6 +95,7 @@ class ZyAddCmdHeaderCommand(sublime_plugin.TextCommand):
 
 
 class ZyAddFileFooterCommand(sublime_plugin.TextCommand):
+
     def run(self, edit):
         default_footer = os.linesep
         """add a line to the end of the line"""
@@ -99,11 +105,13 @@ class ZyAddFileFooterCommand(sublime_plugin.TextCommand):
 
 
 class ZyFileModifiedCommand(sublime_plugin.TextCommand):
+
     def run(self, edit):
         modified_date_region = self.view.find('@@Modify Date', 0)
         if modified_date_region:
             line = self.view.line(modified_date_region)
-            now = datetime.datetime.now().strftime(ZyConfig.get_singleton().get('time_format'))
+            now = datetime.datetime.now().strftime(
+                ZyConfig.get_singleton().get('time_format'))
             string_line = self.view.substr(line)
             before_pos = string_line.find('@@Modify Date')
             before_string = ''
@@ -127,6 +135,7 @@ class ZyFileModifiedCommand(sublime_plugin.TextCommand):
 
 
 class ZyAddFileHeaderManually(sublime_plugin.TextCommand):
+
     def run(self, edit):
         self.view.run_command('zy_file_new_header')
         self.view.run_command('zy_file_modified')
@@ -134,6 +143,7 @@ class ZyAddFileHeaderManually(sublime_plugin.TextCommand):
 
 
 class ZyAddFileAndCmdHeader(sublime_plugin.EventListener):
+
     def on_new(self, view):
         view.run_command('zy_add_header_on_created')
 
